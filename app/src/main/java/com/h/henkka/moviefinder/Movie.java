@@ -1,107 +1,42 @@
 package com.h.henkka.moviefinder;
 
-public class Movie {
 
+public class Movie extends Event{
 
-    private String title;
-    private String ratingUrl;
-    private String genre;
-    private String synopsis;
-    private String smallPortraitUrl;
-    private String mediumPortraitUrl;
-    private String largePortraitUrl;
-    private String smallLandscapeUrl;
-    private String largeLandscapeUrl;
-    private String year;
-    private int id;
+    private String startTime;
+    private String theaterAuditorium;
+    private String theaterId;
+    private String presentationMethodAndLanguage;
 
-
-    public String getTitle() {
-        return title;
+    public String getPresentationMethodAndLanguage() {
+        return presentationMethodAndLanguage;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setPresentationMethodAndLanguage(String presentationMethodAndLanguage) {
+        this.presentationMethodAndLanguage = presentationMethodAndLanguage;
     }
 
-    public String getRatingUrl() {
-        return ratingUrl;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public void setRatingUrl(String ratingUrl) {
-        this.ratingUrl = ratingUrl;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getTheaterAuditorium() {
+        return theaterAuditorium;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setTheaterAuditorium(String theaterAuditorium) {
+        this.theaterAuditorium = theaterAuditorium;
     }
 
-    public String getSynopsis() {
-        return synopsis;
+    public String getTheaterId() {
+        return theaterId;
     }
 
-    public void setSynopsis(String synopsis) {
-        this.synopsis = synopsis;
+    public void setTheaterId(String theaterId) {
+        this.theaterId = theaterId;
     }
-
-    public String getSmallPortraitUrl() {
-        return smallPortraitUrl;
-    }
-
-    public void setSmallPortraitUrl(String smallPortraitUrl) {
-        this.smallPortraitUrl = smallPortraitUrl;
-    }
-
-    public String getMediumPortraitUrl() {
-        return mediumPortraitUrl;
-    }
-
-    public void setMediumPortraitUrl(String mediumPortraitUrl) {
-        this.mediumPortraitUrl = mediumPortraitUrl;
-    }
-
-    public String getLargePortraitUrl() {
-        return largePortraitUrl;
-    }
-
-    public void setLargePortraitUrl(String largePortraitUrl) {
-        this.largePortraitUrl = largePortraitUrl;
-    }
-
-    public String getSmallLandscapeUrl() {
-        return smallLandscapeUrl;
-    }
-
-    public void setSmallLandscapeUrl(String smallLandscapeUrl) {
-        this.smallLandscapeUrl = smallLandscapeUrl;
-    }
-
-    public String getLargeLandscapeUrl() {
-        return largeLandscapeUrl;
-    }
-
-    public void setLargeLandscapeUrl(String largeLandscapeUrl) {
-        this.largeLandscapeUrl = largeLandscapeUrl;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
 }

@@ -29,7 +29,7 @@ public class TheaterXmlParser extends XmlParser {
         parser.setInput(input, null);
         parser.nextTag();
         List data = readFeed(parser);
-        iListener.theatreDataRequestDone(data);
+        iListener.theaterDataRequestDone(data);
     }
 
     @Override

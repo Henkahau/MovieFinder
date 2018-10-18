@@ -11,20 +11,25 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class MovieXmlParser extends XmlParser {
 
-    public MovieXmlParser(MovieFinderXmlParserInterface listener) {
+    private String area;
+
+    public MovieXmlParser(MovieFinderXmlParserInterface listener, String area) {
         super(listener);
+        this.area = area;
     }
+
 
     @Override
     public String getXmlUrl() {
         Date today = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         String dateString = formatter.format(today);
-        return XML_URL + "Schedule/?area=1018&dt=" + dateString;
+        return XML_URL + "Schedule/?area=" + area + "&dt=" + dateString;
     }
 
     @Override
@@ -102,8 +107,23 @@ public class MovieXmlParser extends XmlParser {
             else if (name.equals("Genres")) {
                 movie.setGenre(readTag(parser, name));
             }
+            else if (name.equals("ID")) {
+                movie.setId(readTag(parser, name));
+            }
             else if (name.equals("ProductionYear")) {
                 movie.setYear(readTag(parser, name));
+            }
+            else if (name.equals("dttmShowStart")) {
+                movie.setStartTime(readTag(parser, name));
+            }
+            else if (name.equals("TheatreAndAuditorium")) {
+                movie.setTheaterAuditorium(readTag(parser, name));
+            }
+            else if (name.equals("TheatreID")) {
+                movie.setTheaterId(readTag(parser, name));
+            }
+            else if (name.equals("PresentationMethodAndLanguage")) {
+                movie.setPresentationMethodAndLanguage(readTag(parser, name));
             }
             else if (name.equals("Images")) {
                 parser.require(XmlPullParser.START_TAG, null, "Images");
