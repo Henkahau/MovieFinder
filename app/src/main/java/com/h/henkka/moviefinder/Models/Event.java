@@ -1,4 +1,4 @@
-package com.h.henkka.moviefinder;
+package com.h.henkka.moviefinder.Models;
 
 public class Event {
 

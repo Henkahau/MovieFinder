@@ -1,7 +1,11 @@
-package com.h.henkka.moviefinder;
+package com.h.henkka.moviefinder.XmlParsers;
 
 import android.util.Log;
 import android.util.Xml;
+
+import com.h.henkka.moviefinder.Models.Event;
+import com.h.henkka.moviefinder.Models.Movie;
+import com.h.henkka.moviefinder.MovieFinderXmlParserInterface;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -13,14 +17,20 @@ import java.util.List;
 
 public class EventXmlParser extends XmlParser {
 
+    private String eventID = "";
 
     public EventXmlParser(MovieFinderXmlParserInterface listener) {
         super(listener);
     }
 
+    public EventXmlParser(MovieFinderXmlParserInterface listener, String eventID) {
+        super(listener);
+        this.eventID = "?eventID=" + eventID;
+    }
+
     @Override
     public String getXmlUrl() {
-        return XML_URL + "Events";
+        return XML_URL + "Events" + eventID;
     }
 
     @Override
@@ -82,6 +92,9 @@ public class EventXmlParser extends XmlParser {
             }
             else if (name.equals("ProductionYear")) {
                 event.setYear(readTag(parser, name));
+            }
+            else if (name.equals("Synopsis")) {
+                event.setSynopsis(readTag(parser, name));
             }
             else if (name.equals("ID")) {
                 event.setId(readTag(parser, name));

@@ -1,4 +1,6 @@
-package com.h.henkka.moviefinder;
+package com.h.henkka.moviefinder.XmlParsers;
+
+import com.h.henkka.moviefinder.MovieFinderXmlParserInterface;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;

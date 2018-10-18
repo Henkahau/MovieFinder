@@ -1,7 +1,10 @@
-package com.h.henkka.moviefinder;
+package com.h.henkka.moviefinder.XmlParsers;
 
 import android.util.Log;
 import android.util.Xml;
+
+import com.h.henkka.moviefinder.Models.Movie;
+import com.h.henkka.moviefinder.MovieFinderXmlParserInterface;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -11,7 +14,6 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 public class MovieXmlParser extends XmlParser {
@@ -107,7 +109,7 @@ public class MovieXmlParser extends XmlParser {
             else if (name.equals("Genres")) {
                 movie.setGenre(readTag(parser, name));
             }
-            else if (name.equals("ID")) {
+            else if (name.equals("EventID")) {
                 movie.setId(readTag(parser, name));
             }
             else if (name.equals("ProductionYear")) {

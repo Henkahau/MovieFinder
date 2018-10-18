@@ -1,7 +1,10 @@
-package com.h.henkka.moviefinder;
+package com.h.henkka.moviefinder.XmlParsers;
 
 import android.util.Log;
 import android.util.Xml;
+
+import com.h.henkka.moviefinder.MovieFinderXmlParserInterface;
+import com.h.henkka.moviefinder.Models.MovieTheater;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
