@@ -3,12 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    android:layout_marginHorizontal="10dp">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
+        android:layout_marginVertical="10dp"
+        android:outlineAmbientShadowColor="@color/colorYellow"
+        android:outlineSpotShadowColor="@color/colorYellow"
+        app:cardCornerRadius="5dp"
         app:cardUseCompatPadding="true">
 
         <android.support.constraint.ConstraintLayout
@@ -26,14 +29,19 @@
                 android:src="@drawable/ic_launcher_background"/>
 
             <TextView
+                android:layout_marginStart="10dp"
                 android:id="@+id/movie_title_txt"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="MOVIE TITLE"
+                android:textColor="@color/colorYellow"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/card_image_view"/>
 
             <ImageView
+                android:layout_marginEnd="5dp"
                 android:id="@+id/rating_image_view"
                 android:scaleType="fitXY"
                 android:layout_width="wrap_content"
@@ -44,26 +52,45 @@
                 android:src="@mipmap/ic_launcher_round" />
 
             <TextView
+                app:layout_constraintStart_toStartOf="@id/movie_title_txt"
                 android:id="@+id/movie_genre_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="GENRE"
+                android:textColor="@color/colorDarkBg"
+                android:textSize="15sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/movie_title_txt"/>
 
             <TextView
+                app:layout_constraintStart_toStartOf="@id/movie_title_txt"
                 android:id="@+id/movie_auditorium_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorDarkBg"
+                android:textSize="15sp"
                 android:text="THEATER, AUDITORIUM 1"
                 app:layout_constraintTop_toBottomOf="@id/movie_genre_txt"
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
             <TextView
+                app:layout_constraintStart_toStartOf="@id/movie_title_txt"
+                android:id="@+id/movie_start_time_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDarkBg"
+                android:textSize="15sp"
+                app:layout_constraintTop_toBottomOf="@id/movie_auditorium_txt"
+                android:text="12.00"/>
+
+            <TextView
+                app:layout_constraintStart_toStartOf="@id/movie_title_txt"
                 android:id="@+id/movie_presentation_lang_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/movie_auditorium_txt"
+                android:textColor="@color/colorDarkBg"
+                android:textSize="15sp"
+                app:layout_constraintTop_toBottomOf="@id/movie_start_time_txt"
                 android:text="2D, SUOMI"/>
 
         </android.support.constraint.ConstraintLayout>

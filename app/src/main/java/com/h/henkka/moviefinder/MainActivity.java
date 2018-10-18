@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -23,8 +24,14 @@ import com.h.henkka.moviefinder.XmlParsers.XmlParser;
 import com.poliveira.parallaxrecyclerview.HeaderLayoutManagerFixed;
 import com.poliveira.parallaxrecyclerview.ParallaxRecyclerAdapter;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements MovieFinderXmlPar
 
     private List<MovieTheater> theaters = new ArrayList<>();
     private ArrayList<Movie> movies = new ArrayList<>();
+
+    private String theaterName;
 
     @BindView(R.id.spinner_)
     Spinner spinner;
@@ -70,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements MovieFinderXmlPar
                 R.layout.support_simple_spinner_dropdown_item, movieTitles);
 
         movieAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinner.setBackgroundColor(getResources().getColor(R.color.colorYellow));
         spinner.setAdapter(movieAdapter);
 
     }
@@ -114,8 +124,11 @@ public class MainActivity extends AppCompatActivity implements MovieFinderXmlPar
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String area = theaters.get(position).getId();
+        theaterName = theaters.get(position).getName();
+
         XmlParser movieParser = new MovieXmlParser(this, area);
         movieParser.start();
+
         progressCircular.setVisibility(View.VISIBLE);
         mRecyclerView.setVisibility(View.GONE);
     }
@@ -137,11 +150,24 @@ public class MainActivity extends AppCompatActivity implements MovieFinderXmlPar
                 String lang = movie.getPresentationMethodAndLanguage();
                 String imageUrl = movie.getLargeLandscapeUrl();
                 String ratingUrl = movie.getRatingUrl();
+                String time = movie.getStartTime();
+                String timeStr = "";
+                SimpleDateFormat informatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                SimpleDateFormat outPutForm = new SimpleDateFormat("HH:mm");
+                try {
+                    Date parseTime = informatter.parse(time);
+                    timeStr = outPutForm.format(parseTime);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
                 ((CardViewHolder)viewHolder).movieTitleTv.setText(title);
                 ((CardViewHolder)viewHolder).movieGenreTv.setText(genre);
                 ((CardViewHolder)viewHolder).movieTheatreAuditoriumTv.setText(audit);
                 ((CardViewHolder)viewHolder).movieLangTv.setText(lang);
+                ((CardViewHolder)viewHolder).movieStartTimeTv.setText(timeStr);
+
 
                 View view = getLayoutInflater().inflate(R.layout.card_view_layout, null, false);
                 Glide.with(view)
@@ -169,7 +195,10 @@ public class MainActivity extends AppCompatActivity implements MovieFinderXmlPar
         recyclerView.setLayoutManager(layoutManagerFixed);
 
         View headerView = getLayoutInflater().inflate(R.layout.header_layout, recyclerView, false);
-        TextView header = headerView.findViewById(R.id.header_text);
+        TextView headerTxt = headerView.findViewById(R.id.header_text);
+
+        headerTxt.setText(theaterName);
+
         adapter.setParallaxHeader(headerView, recyclerView);
         adapter.setData(movies);
         recyclerView.setAdapter(adapter);
@@ -194,6 +223,7 @@ public class MainActivity extends AppCompatActivity implements MovieFinderXmlPar
         public TextView movieGenreTv;
         public TextView movieTheatreAuditoriumTv;
         public TextView movieLangTv;
+        public TextView movieStartTimeTv;
 
 
         public CardViewHolder(@NonNull View itemView) {
@@ -205,6 +235,7 @@ public class MainActivity extends AppCompatActivity implements MovieFinderXmlPar
             movieGenreTv = itemView.findViewById(R.id.movie_genre_txt);
             movieTheatreAuditoriumTv = itemView.findViewById(R.id.movie_auditorium_txt);
             movieLangTv = itemView.findViewById(R.id.movie_presentation_lang_txt);
+            movieStartTimeTv = itemView.findViewById(R.id.movie_start_time_txt);
         }
     }
 
