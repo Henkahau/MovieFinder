@@ -55,7 +55,6 @@ public abstract class XmlParser extends Thread {
 
     public abstract List readFeed(XmlPullParser parser) throws XmlPullParserException, IOException;
 
-
     public abstract List readChild(XmlPullParser parser) throws XmlPullParserException, IOException;
 
     final String readTag(XmlPullParser parser, String name) throws XmlPullParserException, IOException {

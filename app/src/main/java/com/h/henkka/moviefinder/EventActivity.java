@@ -1,9 +1,11 @@
 package com.h.henkka.moviefinder;
 
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -49,6 +51,9 @@ public class EventActivity extends AppCompatActivity implements MovieFinderXmlPa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
         ButterKnife.bind(this);
+        
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         recyclerView.setHasFixedSize(true);
         String eventID = getIntent().getStringExtra("EVENT_ID");
         XmlParser eventParser = new EventXmlParser(this, eventID);
@@ -58,6 +63,13 @@ public class EventActivity extends AppCompatActivity implements MovieFinderXmlPa
         ratigImage.setVisibility(View.GONE);
         recyclerView.setVisibility(View.GONE);
         movieTitle.setVisibility(View.GONE);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
